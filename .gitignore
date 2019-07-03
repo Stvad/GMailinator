@@ -1,3 +1,5 @@
 .DS_Store
 xcuserdata/
 GMailinator.xcodeproj/project.xcworkspace/xcshareddata/
+.idea
+build

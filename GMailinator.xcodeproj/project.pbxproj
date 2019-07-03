@@ -23,7 +23,7 @@
 		239B1F2217B6FD16002CEA1B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "~/Library/Mail/Bundles";
+			dstPath = "$(HOME)/Library/Mail/Bundles";
 			dstSubfolderSpec = 0;
 			files = (
 				239B1F2317B6FD2F002CEA1B /* GMailinator.mailbundle in CopyFiles */,
@@ -152,7 +152,7 @@
 		499015D11615FE5300991F6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = nompute;
 			};
 			buildConfigurationList = 499015D41615FE5300991F6C /* Build configuration list for PBXProject "GMailinator" */;
@@ -196,7 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Grabbing the mail app uuid for your version....\"\necho \"the Source_ROOT ${SOURCE_ROOT}\"\n\ndefaults write ${SOURCE_ROOT}/GMailinator/Info.plist SupportedPluginCompatibilityUUIDs -array-add \"`${SOURCE_ROOT}/find_uuid.sh`\"";
+			shellScript = "full_version=$(sw_vers -productVersion)\nmajor_version=$(echo $full_version | awk -F \\. {'print $1'})\nminor_version=$(echo $full_version | awk -F \\. {'print $2'})\n\necho \"OSX v${major_version}.${minor_version}\"\n\nif [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"12\" ]; then\n    compatibility_key=Supported${major_version}.${minor_version}PluginCompatibilityUUIDs\nelse\n    compatibility_key=SupportedPluginCompatibilityUUIDs\nfi\n\nmail_uuid=$(${SOURCE_ROOT}/find_uuid.sh)\n\necho \"UUID for your version of Mail.app: ${mail_uuid}\"\n\nif defaults read ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} | grep \"${mail_uuid}\" >/dev/null; then\n    echo \"UUID already exists in ${compatibility_key}\"\nelse\n    echo \"Adding UUID to ${compatibility_key}\"\n    defaults write ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} -array-add \"${mail_uuid}\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -223,13 +223,22 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -238,7 +247,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "~/Library/Mail/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -254,15 +265,26 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "~/Library/Mail/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
