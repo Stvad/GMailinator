@@ -207,23 +207,23 @@ SearchManager *_sm;
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'j': { // next message (down)
+    case 'k': { // next message (down)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_DownArrow, true);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'J': { // expand selection to next message (down)
+    case 'K': { // expand selection to next message (down)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_DownArrow, true);
         CGEventSetFlags(cgEvent, kCGEventFlagMaskShift);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'k': { // previous message (up)
+    case 'h': { // previous message (up)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_UpArrow, true);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'K': { // expand selection to previous message (up)
+    case 'H': { // expand selection to previous message (up)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_UpArrow, true);
         CGEventSetFlags(cgEvent, kCGEventFlagMaskShift);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
